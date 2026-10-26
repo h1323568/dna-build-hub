@@ -1,11 +1,7 @@
 {
-  "updated_at": "2026-10-26T20:09:29+08:00",
+  "updated_at": "2026-10-26T14:20:00+08:00",
   "source_status": [
-    {
-      "name": "B站搜索",
-      "ok": false,
-      "error": "HTTP Error 412: Precondition Failed"
-    }
+    { "name": "示例数据", "ok": true, "count": 9 }
   ],
   "builds": [
     {
@@ -51,11 +47,7 @@
   "teams": [
     {
       "name": "水火爆发队",
-      "members": [
-        "丽贝卡",
-        "贝蕾妮卡",
-        "松露与榛子"
-      ],
+      "members": ["丽贝卡", "贝蕾妮卡", "松露与榛子"],
       "strategy": "示例：辅助挂增益 → 副C 破盾 → 主C 站场输出。",
       "scenario": "高难 Boss 战",
       "source_name": "B站",
@@ -65,11 +57,7 @@
     },
     {
       "name": "风雷速切队",
-      "members": [
-        "松露与榛子",
-        "琳恩",
-        "芙罗拉"
-      ],
+      "members": ["松露与榛子", "琳恩", "芙罗拉"],
       "strategy": "示例：三人轮切打反应，不依赖站场主C。",
       "scenario": "日常刷图 / 群怪",
       "source_name": "NGA",
@@ -78,5 +66,33 @@
       "manual": true
     }
   ],
-  "feeds": []
+  "feeds": [
+    {
+      "title": "「二重螺旋」当前版本全角色武器推荐一图流（示例条目）",
+      "url": "https://www.bilibili.com/",
+      "published_at": "2026-10-26T12:30:00+08:00",
+      "source_name": "B站", "manual": true, "type": "视频"
+    },
+    {
+      "title": "[讨论] 新版本 T0 阵容实测数据汇总（示例条目）",
+      "url": "https://nga.178.com/",
+      "published_at": "2026-10-26T08:00:00+08:00",
+      "source_name": "NGA",
+      "type": "文章", "manual": true
+    },
+    {
+      "title": "新角色机制解析与配装前瞻（示例条目）",
+      "url": "https://www.gamersky.com/",
+      "published_at": "2026-10-25T14:00:00+08:00",
+      "source_name": "媒体",
+      "type": "文章", "manual": true
+    },
+    {
+      "title": "魔之楔词条收益计算表分享（示例条目）",
+      "url": "https://wiki.biligame.com/",
+      "published_at": "2026-10-24T22:00:00+08:00",
+      "source_name": "Wiki",
+      "type": "配装线索", "manual": true
+    }
+  ]
 }
