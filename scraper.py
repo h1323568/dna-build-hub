@@ -199,6 +199,10 @@ def merge(raw_items, existing):
             it["type"] = "配装线索" if kind == "builds" else "阵容线索"
             feeds.append(it)
 
+    # 手工维护的精选条目永远保留并排在最前
+    manual_feeds = [f for f in existing.get("feeds", []) if f.get("manual")]
+    manual_urls = {f.get("url") for f in manual_feeds}
+    feeds = manual_feeds + [f for f in feeds if f.get("url") not in manual_urls]
     feeds.sort(key=lambda x: x.get("published_at") or "", reverse=True)
 
     builds = [b for b in existing.get("builds", []) if b.get("manual")]
