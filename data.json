@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-10-27T02:45:12+08:00",
+  "updated_at": "2026-10-27T06:57:22+08:00",
   "source_status": [
     {
       "name": "B站搜索",
-      "ok": false,
-      "error": "HTTP Error 412: Precondition Failed"
+      "ok": true,
+      "count": 60
     }
   ],
   "builds": [
@@ -80,6 +80,13 @@
   ],
   "feeds": [
     {
+      "title": "【二重螺旋】一周年的一周年，大雷歌的大雷哥！ 狩月周报VOL.12",
+      "url": "https://www.bilibili.com/video/BV1Tpn96SEQg",
+      "published_at": "2026-10-26T13:41:27+08:00",
+      "source_name": "B站",
+      "type": "视频"
+    },
+    {
       "title": "「二重螺旋」当前版本全角色武器推荐一图流（示例条目）",
       "url": "https://www.bilibili.com/",
       "published_at": "2026-10-26T12:30:00+08:00",
@@ -96,6 +103,34 @@
       "manual": true
     },
     {
+      "title": "挺烧心的！二重螺旋1.7mod副本改动，刷取窍门！灾厄武器刷取推荐",
+      "url": "https://www.bilibili.com/video/BV1naH56PEmd",
+      "published_at": "2026-10-25T18:01:36+08:00",
+      "source_name": "B站",
+      "type": "配装线索"
+    },
+    {
+      "title": "不烧心的~二重螺旋1.7全角色刷取、关键队伍mod配装推荐",
+      "url": "https://www.bilibili.com/video/BV1w8H56iEKJ",
+      "published_at": "2026-10-25T17:50:04+08:00",
+      "source_name": "B站",
+      "type": "阵容线索"
+    },
+    {
+      "title": "【二重螺旋】黎瑟万华皮肤值得升级吗？结丝夜行特效展示+三套染色搭配",
+      "url": "https://www.bilibili.com/video/BV11NHL66ELg",
+      "published_at": "2026-10-25T17:21:37+08:00",
+      "source_name": "B站",
+      "type": "视频"
+    },
+    {
+      "title": "【二重螺旋1.7】没灾厄武器刷灾厄，止流速刷分享",
+      "url": "https://www.bilibili.com/video/BV1XkHG6mEXg",
+      "published_at": "2026-10-25T15:22:03+08:00",
+      "source_name": "B站",
+      "type": "配装线索"
+    },
+    {
       "title": "新角色机制解析与配装前瞻（示例条目）",
       "url": "https://www.gamersky.com/",
       "published_at": "2026-10-25T14:00:00+08:00",
@@ -104,12 +139,376 @@
       "manual": true
     },
     {
+      "title": "【二重螺旋】1.7值不值得回坑？一个视频找回狩月的意义！",
+      "url": "https://www.bilibili.com/video/BV13fHT6aE2t",
+      "published_at": "2026-10-25T11:03:56+08:00",
+      "source_name": "B站",
+      "type": "视频"
+    },
+    {
       "title": "魔之楔词条收益计算表分享（示例条目）",
       "url": "https://wiki.biligame.com/",
       "published_at": "2026-10-24T22:00:00+08:00",
       "source_name": "Wiki",
       "type": "配装线索",
       "manual": true
+    },
+    {
+      "title": "【二重螺旋】轻松拿下黎瑟浴火！1.7上半戏剧超低配攻略",
+      "url": "https://www.bilibili.com/video/BV1R8HK6aEks",
+      "published_at": "2026-10-24T19:41:04+08:00",
+      "source_name": "B站",
+      "type": "视频"
+    },
+    {
+      "title": "【二重螺旋1.7】最新版本的水队攻略伊薇、止流、水主魔之楔到底带什么？又如何去高效挂机呢？一个视频教会你配装和点位构筑！",
+      "url": "https://www.bilibili.com/video/BV1kXna6UEgm",
+      "published_at": "2026-10-24T00:12:38+08:00",
+      "source_name": "B站",
+      "type": "配装线索"
+    },
+    {
+      "title": "二重螺旋1.7版本常用角色武器MOD配置分享",
+      "url": "https://www.bilibili.com/video/BV1ednW6yERG",
+      "published_at": "2026-10-23T01:49:11+08:00",
+      "source_name": "B站",
+      "type": "配装线索"
+    },
+    {
+      "title": "【二重螺旋】开荒路线图已更新!1.7萌新入坑回坑指南",
+      "url": "https://www.bilibili.com/video/BV13fny6PEUs",
+      "published_at": "2026-10-22T15:32:55+08:00",
+      "source_name": "B站",
+      "type": "视频"
+    },
+    {
+      "title": "（已解决）坏消息：灾厄扼守卡boss逃课和提前结算机制被修了 【二重螺旋】",
+      "url": "https://www.bilibili.com/video/BV1ufnk6xEXR",
+      "published_at": "2026-10-22T03:11:36+08:00",
+      "source_name": "B站",
+      "type": "视频"
+    },
+    {
+      "title": "【二重螺旋1.7】最新版本的雷队攻略——黎瑟、止流、煜明魔之楔到底带什么？又如何去高效挂机呢？一个视频教会你配装和点位构筑！",
+      "url": "https://www.bilibili.com/video/BV1jZnz6bEjK",
+      "published_at": "2026-10-22T01:11:18+08:00",
+      "source_name": "B站",
+      "type": "配装线索"
+    },
+    {
+      "title": "【焚诀】是开了还是没关？1.7雷系狙神黎瑟·浴火毕业养成攻略丨配装丨配卡丨配队丨【二重螺旋】",
+      "url": "https://www.bilibili.com/video/BV1vsnr6fExH",
+      "published_at": "2026-10-21T22:27:37+08:00",
+      "source_name": "B站",
+      "type": "阵容线索"
+    },
+    {
+      "title": "【二重螺旋】2+1无专属灾厄的黎瑟浴火实力如何？",
+      "url": "https://www.bilibili.com/video/BV1tanq6BEM2",
+      "published_at": "2026-10-21T13:53:46+08:00",
+      "source_name": "B站",
+      "type": "视频"
+    },
+    {
+      "title": "二重螺旋最强的破韧武器------那么代价是什么呢",
+      "url": "https://www.bilibili.com/video/BV15onq6HE9z",
+      "published_at": "2026-10-21T12:45:12+08:00",
+      "source_name": "B站",
+      "type": "配装线索"
+    },
+    {
+      "title": "二重螺旋｜黎瑟·浴火两分钟上手，技能、武器、配队一次讲清！",
+      "url": "https://www.bilibili.com/video/BV1gTnP62EhX",
+      "published_at": "2026-10-20T18:49:03+08:00",
+      "source_name": "B站",
+      "type": "阵容线索"
+    },
+    {
+      "title": "【二重螺旋】sp黎瑟/黎瑟·浴火-角色攻略：武器、魔之楔、配队一图流养成攻略",
+      "url": "https://www.bilibili.com/video/BV1T3nw6KEF4",
+      "published_at": "2026-10-20T16:00:00+08:00",
+      "source_name": "B站",
+      "type": "阵容线索"
+    },
+    {
+      "title": "【二重螺旋】黎瑟浴火角色攻略 有框你不打？角色解析/魔之楔/配装阵容作业",
+      "url": "https://www.bilibili.com/video/BV1nqJf6DEvT",
+      "published_at": "2026-10-20T15:30:00+08:00",
+      "source_name": "B站",
+      "type": "阵容线索"
+    },
+    {
+      "title": "【二重螺旋】非常主观的1.7版本玩法汇总与角色评价和萌新指南",
+      "url": "https://www.bilibili.com/video/BV18onJ6tErE",
+      "published_at": "2026-10-19T17:55:02+08:00",
+      "source_name": "B站",
+      "type": "视频"
+    },
+    {
+      "title": "【二重螺旋】火歌遗憾收场，雷歌王者归来。明日就更！ 狩月周报VOL.11",
+      "url": "https://www.bilibili.com/video/BV1eCn76bEBU",
+      "published_at": "2026-10-19T14:07:38+08:00",
+      "source_name": "B站",
+      "type": "视频"
+    },
+    {
+      "title": "【二重螺旋】SP黎瑟养成提前准备攻略！魔之楔、武器、技能与配队解析",
+      "url": "https://www.bilibili.com/video/BV1xWJe6WEwv",
+      "published_at": "2026-10-17T17:15:13+08:00",
+      "source_name": "B站",
+      "type": "阵容线索"
+    },
+    {
+      "title": "【二重螺旋】爆料全梳理！1.7新内容+1.8新玩法 一口气看懂",
+      "url": "https://www.bilibili.com/video/BV1ZyJ46dEvG",
+      "published_at": "2026-10-17T11:00:00+08:00",
+      "source_name": "B站",
+      "type": "视频"
+    },
+    {
+      "title": "【二重螺旋】ch爆料1.8版本要上圣遗物啦！全新限时活动 全新装备系统",
+      "url": "https://www.bilibili.com/video/BV1eCJ16uE2q",
+      "published_at": "2026-10-16T00:15:37+08:00",
+      "source_name": "B站",
+      "type": "视频"
+    },
+    {
+      "title": "《二重螺旋》行于破晓版本前瞻研发面谈回放",
+      "url": "https://www.bilibili.com/video/BV1zVJ26UEfT",
+      "published_at": "2026-10-15T22:57:13+08:00",
+      "source_name": "B站",
+      "type": "视频"
+    },
+    {
+      "title": "二重螺旋1.7新mod数值对比、刷取前瞻，重点优化展示",
+      "url": "https://www.bilibili.com/video/BV1j7Jy6MEkk",
+      "published_at": "2026-10-15T18:04:05+08:00",
+      "source_name": "B站",
+      "type": "视频"
+    },
+    {
+      "title": "【二重螺旋】大雷歌再临！没有中枢和羽翼？1.7更新解读",
+      "url": "https://www.bilibili.com/video/BV18tJk6XEm8",
+      "published_at": "2026-10-15T15:26:09+08:00",
+      "source_name": "B站",
+      "type": "视频"
+    },
+    {
+      "title": "黎瑟sp技能动画、机制与配装倾向分析！止流煜明7溯解析【二重螺旋1.7前瞻】",
+      "url": "https://www.bilibili.com/video/BV1HFpB6TE8j",
+      "published_at": "2026-10-13T18:25:42+08:00",
+      "source_name": "B站",
+      "type": "配装线索"
+    },
+    {
+      "title": "福利拉满了！【二重螺旋】属于陀螺的大乱斗时代正式开启！无属性阵容搭配的版本答案来袭！",
+      "url": "https://www.bilibili.com/video/BV1YBpt68ERF",
+      "published_at": "2026-10-09T21:53:55+08:00",
+      "source_name": "B站",
+      "type": "阵容线索"
+    },
+    {
+      "title": "[狩月人之阶] 4溯法露茜3S出分53秒169.6w配装配队分享",
+      "url": "https://www.bilibili.com/video/BV1RoHX68ETb",
+      "published_at": "2026-10-08T22:44:18+08:00",
+      "source_name": "B站",
+      "type": "阵容线索"
+    },
+    {
+      "title": "【二重螺旋】历代狩月人之阶高分阵容大乱斗！无属性环境谁最强？1.6版本SSS级阵容花落谁家？！",
+      "url": "https://www.bilibili.com/video/BV1GLHD6DEVc",
+      "published_at": "2026-10-08T10:34:51+08:00",
+      "source_name": "B站",
+      "type": "阵容线索"
+    },
+    {
+      "title": "【二重螺旋】狩月人低配与满配165~170W分手把手详细实战教学",
+      "url": "https://www.bilibili.com/video/BV1q9HC6rE81",
+      "published_at": "2026-10-07T16:59:14+08:00",
+      "source_name": "B站",
+      "type": "视频"
+    },
+    {
+      "title": "月阶凹分，配装在2P",
+      "url": "https://www.bilibili.com/video/BV1wNpM6HE2z",
+      "published_at": "2026-10-07T15:21:28+08:00",
+      "source_name": "B站",
+      "type": "配装线索"
+    },
+    {
+      "title": "灾厄双枪法露茜－联袂1分速刷进货手法注意点，毕业配队配装",
+      "url": "https://www.bilibili.com/video/BV15MYF6CE26",
+      "published_at": "2026-09-30T20:53:31+08:00",
+      "source_name": "B站",
+      "type": "阵容线索"
+    },
+    {
+      "title": "【焚诀】最强单体C爽吃共斗！充盈流法露茜来了！丨配装丨配卡丨配队丨【二重螺旋】",
+      "url": "https://www.bilibili.com/video/BV1ezaJ6FE1G",
+      "published_at": "2026-09-29T15:13:07+08:00",
+      "source_name": "B站",
+      "type": "阵容线索"
+    },
+    {
+      "title": "【二重螺旋1.6】新双枪灾厄武器：血染织羽——如何快速高效的刷取？用什么阵容？4把就毕业！",
+      "url": "https://www.bilibili.com/video/BV1aYaL6mELC",
+      "published_at": "2026-09-29T10:10:00+08:00",
+      "source_name": "B站",
+      "type": "阵容线索"
+    },
+    {
+      "title": "铁齿铜牙纪晓岚共斗力大砖飞配装推荐",
+      "url": "https://www.bilibili.com/video/BV1LYeu63EK1",
+      "published_at": "2026-09-17T17:41:30+08:00",
+      "source_name": "B站",
+      "type": "配装线索"
+    },
+    {
+      "title": "【角色质检】强者恒强！莉兹贝尔7溯已然登神！丨配装丨配卡丨配队【二重螺旋】",
+      "url": "https://www.bilibili.com/video/BV1MJeP61Ern",
+      "published_at": "2026-09-16T19:45:55+08:00",
+      "source_name": "B站",
+      "type": "阵容线索"
+    },
+    {
+      "title": "【二重螺旋】1.6版本水队配队配装思路，新老手伊薇mod、武器分享",
+      "url": "https://www.bilibili.com/video/BV1QweF66ERP",
+      "published_at": "2026-09-16T14:40:47+08:00",
+      "source_name": "B站",
+      "type": "阵容线索"
+    },
+    {
+      "title": "【二重螺旋1.6】打皎皎币99波就27分钟，挂密函99波也只要25分钟！学还是不学？艾达（伊薇）+水主+止流是什么阵容？",
+      "url": "https://www.bilibili.com/video/BV1gxeH6vEJE",
+      "published_at": "2026-09-15T23:34:55+08:00",
+      "source_name": "B站",
+      "type": "阵容线索"
+    },
+    {
+      "title": "【二重螺旋】新手向！榛子也能看懂的通用角色配装思路",
+      "url": "https://www.bilibili.com/video/BV1BZY66hELT",
+      "published_at": "2026-09-14T12:48:50+08:00",
+      "source_name": "B站",
+      "type": "配装线索"
+    },
+    {
+      "title": "【角色质检】7溯神秘剑气女不再幽默，但仅限对单……丨配装丨配卡丨配队【二重螺旋】",
+      "url": "https://www.bilibili.com/video/BV1gcYd6dEGu",
+      "published_at": "2026-09-12T21:57:24+08:00",
+      "source_name": "B站",
+      "type": "阵容线索"
+    },
+    {
+      "title": "一剑几十亿！二重螺旋隐藏亲女儿-莉兹贝尔1.6毕业mod、配装养成分享",
+      "url": "https://www.bilibili.com/video/BV1PgYd6SEne",
+      "published_at": "2026-09-12T20:06:40+08:00",
+      "source_name": "B站",
+      "type": "配装线索"
+    },
+    {
+      "title": "【焚诀】蓝火也是火！1.6火系最强C法露茜毕业养成攻略丨机制解析丨配装丨配卡丨配队丨【二重螺旋】",
+      "url": "https://www.bilibili.com/video/BV1JzYu6VEuK",
+      "published_at": "2026-09-10T19:24:14+08:00",
+      "source_name": "B站",
+      "type": "阵容线索"
+    },
+    {
+      "title": "二重螺旋1.6版本，艾达挂机皎皎币 阵容推荐",
+      "url": "https://www.bilibili.com/video/BV1qrY86aENB",
+      "published_at": "2026-09-10T00:02:02+08:00",
+      "source_name": "B站",
+      "type": "阵容线索"
+    },
+    {
+      "title": "【二重螺旋】法露茜毕业养成全作业！角色机制详解 避坑这些魔之楔 含7溯解析/机制解析/配装阵容作业",
+      "url": "https://www.bilibili.com/video/BV1nUb363Ezi",
+      "published_at": "2026-09-08T15:22:00+08:00",
+      "source_name": "B站",
+      "type": "阵容线索"
+    },
+    {
+      "title": "1.5版本，狩月人之阶巅峰赛，挂机刷票阵容推荐",
+      "url": "https://www.bilibili.com/video/BV1nk4Q6SEHV",
+      "published_at": "2026-08-30T09:43:01+08:00",
+      "source_name": "B站",
+      "type": "阵容线索"
+    },
+    {
+      "title": "二重螺旋，灾厄重剑粉毛，mod搭配，阵容搭配及输出手法分享",
+      "url": "https://www.bilibili.com/video/BV1HY836LEhh",
+      "published_at": "2026-08-18T22:43:17+08:00",
+      "source_name": "B站",
+      "type": "阵容线索"
+    },
+    {
+      "title": "【焚诀】轻松通关！且试锋芒阵容分享丨无灾厄+全免费角色&amp;武器丨【二重螺旋】",
+      "url": "https://www.bilibili.com/video/BV1oNgW6pEz1",
+      "published_at": "2026-08-13T16:30:18+08:00",
+      "source_name": "B站",
+      "type": "阵容线索"
+    },
+    {
+      "title": "【二重螺旋】新魔之楔夜航70扼守本54分钟点位和阵容推荐，强强联合才是王道！",
+      "url": "https://www.bilibili.com/video/BV1f4M26SEso",
+      "published_at": "2026-08-05T23:17:29+08:00",
+      "source_name": "B站",
+      "type": "阵容线索"
+    },
+    {
+      "title": "【机傀大乱斗】无尽131阵容配置参考攻略",
+      "url": "https://www.bilibili.com/video/BV16uMB6FEJt",
+      "published_at": "2026-08-05T00:35:42+08:00",
+      "source_name": "B站",
+      "type": "阵容线索"
+    },
+    {
+      "title": "【二重螺旋】入坑回坑玩家低配沉浸式戏剧阵容推荐，速刷希尔妲攻略",
+      "url": "https://www.bilibili.com/video/BV1wk316aEKy",
+      "published_at": "2026-07-29T18:26:10+08:00",
+      "source_name": "B站",
+      "type": "阵容线索"
+    },
+    {
+      "title": "【二重螺旋】入坑回坑攻略来啦！前期挂机阵容+角色获取推荐！",
+      "url": "https://www.bilibili.com/video/BV12v3i65EBY",
+      "published_at": "2026-07-28T14:45:08+08:00",
+      "source_name": "B站",
+      "type": "阵容线索"
+    },
+    {
+      "title": "二重螺旋阵容怎么搭配？看完这期视频就懂了",
+      "url": "https://www.bilibili.com/video/BV1avg16GEDe",
+      "published_at": "2026-07-22T21:55:58+08:00",
+      "source_name": "B站",
+      "type": "阵容线索"
+    },
+    {
+      "title": "二重螺旋1.5版本，艾达技能公布。超详细解析水系阵容，小号思路优化",
+      "url": "https://www.bilibili.com/video/BV1ZcK66xEHm",
+      "published_at": "2026-07-19T16:10:37+08:00",
+      "source_name": "B站",
+      "type": "阵容线索"
+    },
+    {
+      "title": "深域229层阵容搭zg",
+      "url": "https://www.bilibili.com/video/BV1sFKq68EXK",
+      "published_at": "2026-07-19T07:41:51+08:00",
+      "source_name": "B站",
+      "type": "阵容线索"
+    },
+    {
+      "title": "【奥特同人】穿越奥特曼世界成为迪迦人间体，我强势改造升级胜利队，打造顶配战力阵容，",
+      "url": "https://www.bilibili.com/video/BV1hGN36aEkw",
+      "published_at": "2026-07-18T08:57:00+08:00",
+      "source_name": "B站",
+      "type": "阵容线索"
+    },
+    {
+      "title": "深境探险速通打法，1.4 版本新副本机制与阵容推荐",
+      "url": "https://www.bilibili.com/video/BV1bzNd6QELy",
+      "published_at": "2026-07-17T18:24:57+08:00",
+      "source_name": "B站",
+      "type": "阵容线索"
     }
   ]
 }
