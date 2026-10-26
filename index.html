@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>二重螺旋 · 配装情报站</title>
+<style>
+  :root {
+    --bg-0: #070b16;
+    --bg-1: #0c1226;
+    --card: rgba(20, 27, 46, 0.72);
+    --card-hover: rgba(28, 38, 64, 0.85);
+    --border: rgba(120, 140, 200, 0.14);
+    --border-bright: rgba(70, 227, 183, 0.45);
+    --text: #e8ecf5;
+    --muted: #8a93ad;
+    --accent: #46e3b7;
+    --accent-dim: rgba(70, 227, 183, 0.12);
+    --accent-2: #8b7ff0;
+    --accent-2-dim: rgba(139, 127, 240, 0.12);
+    --danger: #f06548;
+    --radius: 12px;
+    --font: "PingFang SC", "Microsoft YaHei", system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: radial-gradient(1200px 600px at 80% -10%, rgba(139,127,240,0.10), transparent 60%),
+                radial-gradient(1000px 500px at 10% 0%, rgba(70,227,183,0.08), transparent 55%),
+                linear-gradient(180deg, var(--bg-1), var(--bg-0) 40%);
+    background-attachment: fixed;
+    color: var(--text);
+    font-family: var(--font);
+    min-height: 100vh;
+    line-height: 1.6;
+  }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 24px 20px 64px; }
+
+  /* ===== 顶栏 ===== */
+  header { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; padding: 8px 0 20px; }
+  .brand { display: flex; align-items: center; gap: 12px; }
+  .brand svg { flex: none; }
+  .brand h1 { font-size: 20px; font-weight: 700; letter-spacing: 1px; }
+  .brand h1 em { font-style: normal; color: var(--accent); }
+  .brand p { font-size: 12px; color: var(--muted); letter-spacing: 2px; }
+
+  .controls { margin-left: auto; display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+  .search-box {
+    display: flex; align-items: center; gap: 8px;
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 999px; padding: 8px 16px; min-width: 220px;
+    transition: border-color .2s;
+  }
+  .search-box:focus-within { border-color: var(--border-bright); }
+  .search-box input {
+    background: none; border: none; outline: none; color: var(--text);
+    font-size: 14px; width: 100%; font-family: var(--font);
+  }
+  .search-box input::placeholder { color: var(--muted); }
+  .btn-refresh {
+    display: flex; align-items: center; gap: 8px;
+    background: var(--accent-dim); color: var(--accent);
+    border: 1px solid var(--border-bright); border-radius: 999px;
+    padding: 8px 18px; font-size: 14px; font-weight: 600;
+    cursor: pointer; font-family: var(--font); transition: all .2s;
+  }
+  .btn-refresh:hover { background: rgba(70,227,183,0.22); box-shadow: 0 0 18px rgba(70,227,183,0.25); }
+  .btn-refresh:disabled { opacity: .55; cursor: default; box-shadow: none; }
+  .btn-refresh svg { transition: transform .3s; }
+  .btn-refresh.spinning svg { animation: rot .9s linear infinite; }
+  @keyframes rot { to { transform: rotate(360deg); } }
+
+  .auto-select {
+    display: flex; align-items: center; gap: 6px;
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 999px; padding: 8px 14px; font-size: 13px; color: var(--muted);
+  }
+  .auto-select select {
+    background: none; border: none; outline: none; color: var(--text);
+    font-size: 13px; font-family: var(--font); cursor: pointer;
+  }
+  .auto-select select option { background: var(--bg-1); }
+
+  .status-line { width: 100%; display: flex; flex-wrap: wrap; gap: 8px 24px; font-size: 12px; color: var(--muted); }
+  .status-line b { color: var(--accent); font-weight: 600; }
+  .status-line .dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); margin-right: 6px; box-shadow: 0 0 8px var(--accent); }
+
+  /* ===== 错误提示 ===== */
+  .err-bar {
+    display: none; background: rgba(240,101,72,0.12); border: 1px solid rgba(240,101,72,0.4);
+    color: var(--danger); border-radius: var(--radius); padding: 10px 16px;
+    font-size: 13px; margin-bottom: 16px;
+  }
+  .err-bar.show { display: block; }
+
+  /* ===== 数据源状态 ===== */
+  .src-status { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+  .src-chip {
+    font-size: 12px; color: var(--muted); background: var(--card);
+    border: 1px solid var(--border); border-radius: 999px; padding: 3px 12px;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .src-chip .d { width: 6px; height: 6px; border-radius: 50%; }
+  .src-chip.ok .d { background: var(--accent); }
+  .src-chip.fail .d { background: var(--danger); }
+
+  /* ===== Tabs ===== */
+  .tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--border); margin-bottom: 20px; }
+  .tab {
+    background: none; border: none; color: var(--muted); font-size: 15px; font-weight: 600;
+    padding: 10px 18px; cursor: pointer; font-family: var(--font); position: relative;
+    border-bottom: 2px solid transparent; margin-bottom: -1px; transition: color .2s;
+  }
+  .tab:hover { color: var(--text); }
+  .tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+  .tab .badge {
+    display: inline-block; min-width: 18px; text-align: center;
+    background: var(--accent); color: #06231a; font-size: 11px; font-weight: 700;
+    border-radius: 999px; padding: 0 5px; margin-left: 6px; vertical-align: 2px;
+  }
+  .tab .badge.new { background: var(--danger); color: #fff; }
+
+  /* ===== 卡片网格 ===== */
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
+  .card {
+    background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 18px; backdrop-filter: blur(6px); transition: all .25s;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .card:hover { border-color: var(--border-bright); transform: translateY(-3px); box-shadow: 0 8px 28px rgba(0,0,0,0.4), 0 0 20px rgba(70,227,183,0.08); }
+  .card-head { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .card-head h3 { font-size: 17px; font-weight: 700; }
+  .tag {
+    font-size: 11px; font-weight: 600; border-radius: 999px; padding: 1px 10px;
+    background: var(--accent-2-dim); color: var(--accent-2); border: 1px solid rgba(139,127,240,0.3);
+  }
+  .tag.el { background: var(--accent-dim); color: var(--accent); border-color: var(--border-bright); }
+  .kv { display: flex; gap: 10px; font-size: 13.5px; }
+  .kv .k { color: var(--muted); flex: none; width: 62px; }
+  .kv .v { color: var(--text); }
+  .kv .v a { color: var(--accent); text-decoration: none; }
+  .kv .v a:hover { text-decoration: underline; }
+  .notes { font-size: 13px; color: var(--muted); }
+  .card-foot {
+    margin-top: auto; padding-top: 10px; border-top: 1px dashed var(--border);
+    display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--muted);
+  }
+  .card-foot .src { background: var(--accent-2-dim); color: var(--accent-2); border-radius: 6px; padding: 0 8px; font-weight: 600; }
+  .card-foot time { margin-left: auto; }
+
+  /* ===== 阵容卡 ===== */
+  .team-members { display: flex; gap: 8px; flex-wrap: wrap; }
+  .member {
+    background: var(--accent-dim); border: 1px solid var(--border-bright); color: var(--accent);
+    border-radius: 8px; padding: 3px 12px; font-size: 13px; font-weight: 600;
+  }
+  .scenario { font-size: 12px; color: var(--accent-2); }
+
+  /* ===== 攻略流 ===== */
+  .feed-list { display: flex; flex-direction: column; gap: 10px; }
+  .feed-item {
+    display: flex; align-items: center; gap: 12px;
+    background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 14px 18px; transition: all .2s;
+  }
+  .feed-item:hover { border-color: var(--border-bright); transform: translateX(4px); }
+  .feed-item .src {
+    flex: none; font-size: 12px; font-weight: 700; color: var(--accent-2);
+    background: var(--accent-2-dim); border-radius: 6px; padding: 2px 10px;
+  }
+  .feed-item a { color: var(--text); text-decoration: none; font-size: 14.5px; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .feed-item a:hover { color: var(--accent); }
+  .feed-item .type { flex: none; font-size: 11px; color: var(--muted); border: 1px solid var(--border); border-radius: 999px; padding: 0 8px; }
+  .feed-item time { flex: none; font-size: 12px; color: var(--muted); }
+
+  .empty { text-align: center; color: var(--muted); padding: 60px 0; font-size: 14px; }
+  .section { display: none; }
+  .section.active { display: block; }
+
+  footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); font-size: 12px; color: var(--muted); line-height: 2; }
+  footer code { background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: 1px 8px; font-size: 12px; }
+
+  @media (max-width: 640px) {
+    .controls { margin-left: 0; width: 100%; }
+    .search-box { flex: 1; min-width: 0; }
+    .feed-item a { white-space: normal; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="brand">
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+        <path d="M8 6 C 20 12, 20 28, 32 34" stroke="#46e3b7" stroke-width="2.4" stroke-linecap="round"/>
+        <path d="M32 6 C 20 12, 20 28, 8 34" stroke="#8b7ff0" stroke-width="2.4" stroke-linecap="round"/>
+        <circle cx="14.5" cy="12.5" r="2.2" fill="#46e3b7"/>
+        <circle cx="25.5" cy="27.5" r="2.2" fill="#8b7ff0"/>
+        <circle cx="25.5" cy="12.5" r="2.2" fill="#8b7ff0" opacity=".55"/>
+        <circle cx="14.5" cy="27.5" r="2.2" fill="#46e3b7" opacity=".55"/>
+      </svg>
+      <div>
+        <h1>二重螺旋 <em>·</em> 配装情报站</h1>
+        <p>DUET NIGHT ABYSS BUILD HUB</p>
+      </div>
+    </div>
+    <div class="controls">
+      <label class="search-box">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#8a93ad" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.8-3.8"/></svg>
+        <input id="searchInput" type="text" placeholder="搜索角色 / 武器 / 阵容…">
+      </label>
+      <button class="btn-refresh" id="btnRefresh">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg>
+        立即刷新
+      </button>
+      <label class="auto-select">
+        自动刷新
+        <select id="autoSelect">
+          <option value="0">关闭</option>
+          <option value="5">5 分钟</option>
+          <option value="15">15 分钟</option>
+          <option value="30" selected>30 分钟</option>
+          <option value="60">60 分钟</option>
+        </select>
+      </label>
+    </div>
+    <div class="status-line">
+      <span><span class="dot"></span>数据时间 <b id="dataTime">—</b></span>
+      <span id="countdownWrap">下次刷新 <b id="countdown">—</b></span>
+      <span id="newWrap" style="display:none">本次新增 <b id="newCount">0</b> 条</span>
+    </div>
+  </header>
+
+  <div class="err-bar" id="errBar"></div>
+  <div class="src-status" id="srcStatus"></div>
+
+  <nav class="tabs">
+    <button class="tab active" data-tab="builds">角色配装<span class="badge" id="cntBuilds">0</span></button>
+    <button class="tab" data-tab="teams">阵容搭配<span class="badge" id="cntTeams">0</span></button>
+    <button class="tab" data-tab="feeds">最新攻略<span class="badge" id="cntFeeds">0</span></button>
+  </nav>
+
+  <main>
+    <section class="section active" id="sec-builds"><div class="grid" id="buildsGrid"></div></section>
+    <section class="section" id="sec-teams"><div class="grid" id="teamsGrid"></div></section>
+    <section class="section" id="sec-feeds"><div class="feed-list" id="feedsList"></div></section>
+  </main>
+
+  <footer>
+    <p>数据由 <code>scraper.py</code> 定时抓取生成 <code>data.json</code>（B站 / NGA / Wiki / 游戏媒体等公开攻略来源），本页只读取该静态文件，可部署于 GitHub Pages 等任意静态托管。</p>
+    <p>所有攻略内容版权归原作者所有，点击条目跳转至原始来源。本项目仅供学习交流。</p>
+  </footer>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var DATA_URL = 'data.json';
+  var LS_INTERVAL = 'dna-auto-interval';
+  var LS_SEEN = 'dna-last-seen';
+
+  var state = {
+    data: null,
+    tab: 'builds',
+    query: '',
+    timerId: null,
+    countdownId: null,
+    nextAt: 0
+  };
+
+  var $ = function (id) { return document.getElementById(id); };
+
+  function escapeHtml(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
+  function relTime(iso) {
+    if (!iso) return '未知时间';
+    var t = new Date(iso).getTime();
+    if (isNaN(t)) return iso;
+    var diff = Date.now() - t;
+    if (diff < 0) diff = 0;
+    var m = Math.floor(diff / 60000);
+    if (m < 1) return '刚刚';
+    if (m < 60) return m + ' 分钟前';
+    var h = Math.floor(m / 60);
+    if (h < 24) return h + ' 小时前';
+    var d = Math.floor(h / 24);
+    if (d < 30) return d + ' 天前';
+    return new Date(t).toLocaleDateString('zh-CN');
+  }
+
+  function matchQuery() {
+    var q = state.query.trim().toLowerCase();
+    var fields = Array.prototype.slice.call(arguments);
+    if (!q) return true;
+    return fields.some(function (f) {
+      if (f == null) return false;
+      var s = Array.isArray(f) ? f.join(' ') : String(f);
+      return s.toLowerCase().indexOf(q) !== -1;
+    });
+  }
+
+  /* ---------- 渲染 ---------- */
+  function renderBuilds() {
+    var list = (state.data && state.data.builds) || [];
+    var html = list.filter(function (b) {
+      return matchQuery(b.character, b.melee, b.ranged, b.wedge, b.notes, b.role);
+    }).map(function (b) {
+      return '<article class="card">' +
+        '<div class="card-head"><h3>' + escapeHtml(b.character) + '</h3>' +
+        (b.element ? '<span class="tag el">' + escapeHtml(b.element) + '</span>' : '') +
+        (b.role ? '<span class="tag">' + escapeHtml(b.role) + '</span>' : '') + '</div>' +
+        (b.melee ? '<div class="kv"><span class="k">近战武器</span><span class="v">' + escapeHtml(b.melee) + '</span></div>' : '') +
+        (b.ranged ? '<div class="kv"><span class="k">远程武器</span><span class="v">' + escapeHtml(b.ranged) + '</span></div>' : '') +
+        (b.wedge ? '<div class="kv"><span class="k">魔之楔</span><span class="v">' + escapeHtml(b.wedge) + '</span></div>' : '') +
+        (b.notes ? '<p class="notes">' + escapeHtml(b.notes) + '</p>' : '') +
+        '<div class="card-foot"><span class="src">' + escapeHtml(b.source_name || '未知') + '</span>' +
+        (b.url ? '<a href="' + escapeHtml(b.url) + '" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none">查看原文 ↗</a>' : '') +
+        '<time>' + relTime(b.published_at) + '</time></div>' +
+        '</article>';
+    }).join('');
+    $('buildsGrid').innerHTML = html || '<div class="empty">暂无配装数据，等待下次抓取</div>';
+    $('cntBuilds').textContent = list.length;
+  }
+
+  function renderTeams() {
+    var list = (state.data && state.data.teams) || [];
+    var html = list.filter(function (t) {
+      return matchQuery(t.name, t.members, t.strategy, t.scenario);
+    }).map(function (t) {
+      var members = (t.members || []).map(function (m) {
+        return '<span class="member">' + escapeHtml(m) + '</span>';
+      }).join('');
+      return '<article class="card">' +
+        '<div class="card-head"><h3>' + escapeHtml(t.name || '未命名阵容') + '</h3></div>' +
+        '<div class="team-members">' + members + '</div>' +
+        (t.strategy ? '<p class="notes">' + escapeHtml(t.strategy) + '</p>' : '') +
+        (t.scenario ? '<p class="scenario">适用：' + escapeHtml(t.scenario) + '</p>' : '') +
+        '<div class="card-foot"><span class="src">' + escapeHtml(t.source_name || '未知') + '</span>' +
+        (t.url ? '<a href="' + escapeHtml(t.url) + '" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none">查看原文 ↗</a>' : '') +
+        '<time>' + relTime(t.published_at) + '</time></div>' +
+        '</article>';
+    }).join('');
+    $('teamsGrid').innerHTML = html || '<div class="empty">暂无阵容数据，等待下次抓取</div>';
+    $('cntTeams').textContent = list.length;
+  }
+
+  function renderFeeds() {
+    var list = (state.data && state.data.feeds) || [];
+    var html = list.filter(function (f) {
+      return matchQuery(f.title, f.source_name, f.type);
+    }).map(function (f) {
+      return '<div class="feed-item">' +
+        '<span class="src">' + escapeHtml(f.source_name || '?') + '</span>' +
+        '<a href="' + escapeHtml(f.url || '#') + '" target="_blank" rel="noopener">' + escapeHtml(f.title) + '</a>' +
+        (f.type ? '<span class="type">' + escapeHtml(f.type) + '</span>' : '') +
+        '<time>' + relTime(f.published_at) + '</time>' +
+        '</div>';
+    }).join('');
+    $('feedsList').innerHTML = html || '<div class="empty">暂无攻略更新，等待下次抓取</div>';
+    $('cntFeeds').textContent = list.length;
+  }
+
+  function renderSources() {
+    var st = (state.data && state.data.source_status) || [];
+    $('srcStatus').innerHTML = st.map(function (s) {
+      return '<span class="src-chip ' + (s.ok ? 'ok' : 'fail') + '"><span class="d"></span>' +
+        escapeHtml(s.name) + (s.ok ? ' · ' + (s.count || 0) + ' 条' : ' · 抓取失败') + '</span>';
+    }).join('');
+  }
+
+  function renderAll() {
+    renderBuilds();
+    renderTeams();
+    renderFeeds();
+    renderSources();
+    if (state.data && state.data.updated_at) {
+      $('dataTime').textContent = relTime(state.data.updated_at);
+    }
+  }
+
+  /* ---------- 新内容检测 ---------- */
+  function detectNew(data) {
+    var lastSeen = localStorage.getItem(LS_SEEN);
+    var count = 0;
+    if (lastSeen) {
+      var seen = new Date(lastSeen).getTime();
+      var all = [].concat(data.builds || [], data.teams || [], data.feeds || []);
+      all.forEach(function (it) {
+        var t = new Date(it.published_at || 0).getTime();
+        if (t > seen) count++;
+      });
+    }
+    if (count > 0) {
+      $('newWrap').style.display = '';
+      $('newCount').textContent = count;
+    } else {
+      $('newWrap').style.display = 'none';
+    }
+    localStorage.setItem(LS_SEEN, new Date().toISOString());
+  }
+
+  /* ---------- 加载 ---------- */
+  function setRefreshing(on) {
+    var btn = $('btnRefresh');
+    btn.disabled = on;
+    btn.classList.toggle('spinning', on);
+  }
+
+  function showError(msg) {
+    var bar = $('errBar');
+    bar.textContent = msg;
+    bar.classList.add('show');
+  }
+  function hideError() { $('errBar').classList.remove('show'); }
+
+  function loadData() {
+    setRefreshing(true);
+    fetch(DATA_URL + '?t=' + Date.now(), { cache: 'no-store' })
+      .then(function (res) {
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        return res.json();
+      })
+      .then(function (data) {
+        detectNew(data);
+        state.data = data;
+        renderAll();
+        hideError();
+        scheduleNext();
+      })
+      .catch(function (e) {
+        showError('数据加载失败：' + e.message + '。请确认 data.json 与页面同目录，并通过 HTTP 服务访问（非 file:// 直开）。');
+      })
+      .finally(function () { setRefreshing(false); });
+  }
+
+  /* ---------- 自动刷新调度 ---------- */
+  function fmtCountdown(ms) {
+    if (ms <= 0) return '即将刷新';
+    var s = Math.ceil(ms / 1000);
+    var m = Math.floor(s / 60);
+    if (m >= 1) return m + ' 分 ' + (s % 60) + ' 秒后';
+    return s + ' 秒后';
+  }
+
+  function scheduleNext() {
+    clearTimeout(state.timerId);
+    clearInterval(state.countdownId);
+    var mins = parseInt($('autoSelect').value, 10);
+    if (!mins) {
+      $('countdownWrap').style.display = 'none';
+      return;
+    }
+    $('countdownWrap').style.display = '';
+    state.nextAt = Date.now() + mins * 60000;
+    var tick = function () { $('countdown').textContent = fmtCountdown(state.nextAt - Date.now()); };
+    tick();
+    state.countdownId = setInterval(tick, 1000);
+    state.timerId = setTimeout(loadData, mins * 60000);
+  }
+
+  /* ---------- 事件 ---------- */
+  document.querySelectorAll('.tab').forEach(function (tab) {
+    tab.addEventListener('click', function () {
+      document.querySelectorAll('.tab').forEach(function (t) { t.classList.remove('active'); });
+      tab.classList.add('active');
+      state.tab = tab.getAttribute('data-tab');
+      document.querySelectorAll('.section').forEach(function (s) { s.classList.remove('active'); });
+      $('sec-' + state.tab).classList.add('active');
+    });
+  });
+
+  var searchTimer = null;
+  $('searchInput').addEventListener('input', function (e) {
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(function () {
+      state.query = e.target.value;
+      renderAll();
+    }, 200);
+  });
+
+  $('btnRefresh').addEventListener('click', loadData);
+
+  $('autoSelect').addEventListener('change', function () {
+    localStorage.setItem(LS_INTERVAL, $('autoSelect').value);
+    scheduleNext();
+  });
+
+  var savedInterval = localStorage.getItem(LS_INTERVAL);
+  if (savedInterval !== null) $('autoSelect').value = savedInterval;
+
+  loadData();
+})();
+</script>
+</body>
+</html>
